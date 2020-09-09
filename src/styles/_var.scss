@@ -1,0 +1,37 @@
+.row {
+  @include clearfix;
+}
+
+.flex {
+  float: left;
+}
+
+$flexs: (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+
+@each $flex-num in $flexs {
+  .flex-#{$flex-num} {
+    float: left;
+    width: (#{100 / 12 * $flex-num * 1%});
+  }
+}
+
+$cols: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100);
+
+@each $col-num in $cols {
+  .col-#{$col-num} {
+    float: left;
+    width: (#{$col-num * 1%});
+  }
+}
+
+$color-blue: #1B2631;
+
+$colors: 'blue';
+$colorValues: $color-blue;
+
+@each $i in $colors {
+  .#{$i} {
+    color: nth($colorValues, index($colors, $i));
+  }
+}
+

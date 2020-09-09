@@ -1,0 +1,22 @@
+@import "_reset";
+@import "_mixin";
+@import "_var";
+
+* {
+  font-family: "Microsoft YaHei", tahoma, arial, 'Hiragino Sans GB','\5b8b\4f53',sans-serif;
+}
+img {
+  height: 100%;
+  object-fit: cover;
+}
+
+img[src="#"],img[src=""], img:not([src]) {
+  opacity: 0;
+}
+
+textarea {
+  resize: none;
+  background:transparent; 
+  border: solid 0px;
+  outline:none;
+}

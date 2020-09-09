@@ -1,0 +1,373 @@
+@charset 'utf-8';
+
+// 盒子大小
+@mixin wh( $w, $h ) {
+  width: $w;
+  height: $h;
+  line-height: $h;
+}
+
+// 正方形盒子
+@mixin square($len) {
+  width: $len;
+  height: $len;
+  line-height: $len;
+  text-align: center;
+}
+
+//文字溢出
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+//文本省略
+@mixin text-hidden($num) {
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp:$num;
+  display: -webkit-box;
+}
+
+//flex布局
+@mixin flex-box($poition) {
+  display: -webkit-box;
+  display: -moz-box; 
+  display: -ms-flexbox; 
+  display: -webkit-flex; 
+  display: flex;
+  -webkit-box-align: $poition;
+  -moz-align-items: $poition;
+  -webkit-align-items: $poition;
+  align-items: $poition;
+}
+
+// 清楚浮动
+@mixin clearfix {
+  zoom: 1;
+
+  &:after {
+    display: block;
+    height: 0;
+    clear: both;
+    content: "";
+    visibility: hidden;
+  }
+}
+
+@mixin abs-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@mixin empty {
+  width: 0;
+  height: 0;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+@mixin fixed-center {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+@mixin appearance($s) {
+  -webkit-appearance: $s;
+  -moz-appearance: $s;
+  appearance: $s;
+}
+
+// 透明度
+@mixin opacity($opacity) {
+  opacity: $opacity / 100;
+  filter: alpha(opacity=$opacity);
+}
+
+
+// 圆角
+@mixin radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+// 伪类三角形
+@mixin arrow($dir, $size, $color) {
+  width: 0;
+  height: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 0;
+  @if $dir == 'top' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid $color;
+    bottom: -$size;
+    left: 50%;
+    margin-left: -$size;
+  } @else if $dir == 'bottom' {
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-bottom: $size solid $color;
+    top: -$size;
+    left: 50%;
+    margin-left: -$size;
+  } @else if $dir == 'left' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+    right: -$size;
+    top: 50%;
+    margin-top: -$size;
+  } @else if $dir == 'right' {
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+    left: -$size;
+    top: 50%;
+    margin-top: -$size;
+  }
+}
+
+// 盒子阴影
+@mixin shadow($x, $y, $blur, $color) {
+  -webkit-box-shadow: $x $y $blur $color;
+  -moz-box-shadow: $x $y $blur $color;
+  box-shadow: $x $y $blur $color;
+}
+
+// 动画时间
+@mixin transition($time) {
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  transition: $time;
+}
+
+//动画放大
+@mixin scale($x) {
+  -webkit-transform: scale($x);
+  transform: scale($x);
+}
+
+//旋转
+@mixin rotate($deg) {
+  -webkit-transform: rotate($deg);
+  transform: rotate($deg);
+}
+
+// skew
+@mixin skew($deg) {
+  -webkit-transform: skew($deg);
+  transform: skew($deg);
+}
+
+// placeholder
+@mixin placeholder-color($color) {
+
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  input:-moz-placeholder,
+  textarea:-moz-placeholder {
+    color: $color;
+  }
+
+  input::-moz-placeholder,
+  textarea::-moz-placeholder {
+    color: $color;
+  }
+
+  input:-ms-input-placeholder,
+  textarea:-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+@mixin bg($url) {
+  background: url($url) no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+@mixin bg2($url) {
+  background: url($url) no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+
+@mixin avatar($size) {
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+//渐变
+@mixin linear-gradient($toward, $startColor, $endColor) {
+  background: -webkit-linear-gradient($toward, $startColor, $endColor);
+  background: linear-gradient($toward, $startColor, $endColor);
+}
+
+// 动画animation Mixins
+// --------------------------------------------------
+
+@mixin animation($animation) {
+  animation: $animation;
+  -o-animation: $animation;
+  -ms-animation: $animation;
+  -moz-animation: $animation;
+  -webkit-animation: $animation;
+}
+
+@mixin animation-duration($duration) {
+  animation-duration: $duration;
+  -o-animation-duration: $duration;
+  -ms-animation-duration: $duration;
+  -moz-animation-duration: $duration;
+  -webkit-animation-duration: $duration;
+}
+
+@mixin animation-direction($direction) {
+  animation-direction: $direction;
+  -o-animation-direction: $direction;
+  -ms-animation-direction: $direction;
+  -moz-animation-direction: $direction;
+  -webkit-animation-direction: $direction;
+}
+
+@mixin animation-timing-function($animation-timing) {
+  -webkit-animation-timing-function: $animation-timing;
+  -moz-animation-timing-function: $animation-timing;
+  -ms-animation-timing-function: $animation-timing;
+  -o-animation-timing-function: $animation-timing;
+  animation-timing-function: $animation-timing;
+}
+
+@mixin animation-fill-mode($fill-mode) {
+  -webkit-animation-fill-mode: $fill-mode;
+  -moz-animation-fill-mode: $fill-mode;
+  -ms-animation-fill-mode: $fill-mode;
+  -o-animation-fill-mode: $fill-mode;
+  animation-fill-mode: $fill-mode;
+}
+
+@mixin animation-name($name...) {
+  -webkit-animation-name: $name;
+  -moz-animation-name: $name;
+  -ms-animation-name: $name;
+  -o-animation-name: $name;
+  animation-name: $name;
+}
+
+@mixin animation-iteration-count($count) {
+  -webkit-iteration-count: $count;
+  -moz-iteration-count: $count;
+  -ms-iteration-count: $count;
+  -o-iteration-count: $count;
+  animation-iteration-count: $count;
+}
+
+@mixin animation($name, $duration, $timing, $count, $mode) {
+  @include animation-name($name);
+  @include animation-duration($duration);
+  @include animation-timing-function($timing);
+  @include animation-iteration-count($count);
+  @include animation-fill-mode($mode);
+}
+
+@keyframes upShow
+{
+  0%   {top: 102px; opacity: 0}
+  80% {opacity: .7}
+  100% {top: 0; opacity: 1}
+}
+
+@-moz-keyframes upShow
+{
+  0%   {top: 102px; opacity: 0}
+  80% {opacity: .7}
+  100% {top: 0; opacity: 1}
+}
+
+@-ms-keyframes upShow
+{
+  0%   {top: 102px; opacity: 0}
+  80% {opacity: .7}
+  100% {top: 0; opacity: 1}
+}
+
+@-webkit-keyframes upShow
+{
+  0%   {top: 102px; opacity: 0}
+  80% {opacity: .7}
+  100% {top: 0; opacity: 1}
+}
+
+@-o-keyframes upShow
+{
+  0%   {top: 102px; opacity: 0}
+  80% {opacity: .7}
+  100% {top: 0; opacity: 1}
+}
+
+@keyframes goaled
+{
+  0%   { opacity: 1}
+  50% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@-moz-keyframes goaled
+{
+  0%   { opacity: 1}
+  50% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@-ms-keyframes goaled
+{
+  0%   { opacity: 1}
+  50% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@-webkit-keyframes goaled
+{
+  0%   { opacity: 1}
+  50% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@-o-keyframes goaled
+{
+  0%   { opacity: 1}
+  50% {opacity: 0}
+  100% {opacity: 1}
+}
+
+@keyframes new-item-animation {
+  from {
+    opacity: 0 ;
+    transform: translateY( 400px );
+  }
+  to {
+    opacity: 1 ;
+    transform : translateY( 0 );
+  }
+}
